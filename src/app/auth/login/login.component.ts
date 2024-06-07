@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginRequest } from 'src/app/services/auth/LoginRequest';
 import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
@@ -28,12 +29,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value);
+      this.loginService.login(this.loginForm.value as LoginRequest);
       this.router.navigateByUrl('/inicio');
       this.loginForm.reset();
     } else {
       this.loginForm.markAllAsTouched();
-      console.log("Error al ingresar los datos...");
     }
 
   }
