@@ -1,5 +1,5 @@
 <div class="container">
-    <form>
+    <form [formGroup]="loginForm">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
             <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1"
@@ -11,6 +11,6 @@
         </div>
         <div class="mb-3 form-check">
         </div>
-        <button type="submit" class="btn btn-primary">Ingresar</button>
+        <button type="submit" (click)="login()" class="btn btn-primary">Ingresar</button>
     </form>
 </div>

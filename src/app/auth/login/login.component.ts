@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,52 +12,31 @@ export class LoginComponent implements OnInit {
 
   loginError: String = "";
   loginForm = this.formBuilder.group({
-    correo: ['sebastianrios@gmail.com', [Validators.required, Validators.email]],
+    correo: ['correodeprueba@gmail.com', [Validators.required, Validators.email]],
     contrasena: ['', Validators.required]
   });
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
   }
 
+  login() {
+    if (this.loginForm.valid) {
+      this.loginService.login(this.loginForm.value);
+      this.router.navigateByUrl('/inicio');
+      this.loginForm.reset();
+    } else {
+      this.loginForm.markAllAsTouched();
+      console.log("Error al ingresar los datos...");
+    }
 
-  get correo() {
-    return this.loginForm.controls.correo
   }
-
-  get contrasena() {
-    return this.loginForm.controls.contrasena
-  }
-
-  // login() {
-  //   if (this.loginForm.valid) {
-  //     this.loginError = "";
-  //     this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
-  //       next: (userData) => {
-  //         console.log(userData);
-  //       },
-  //       error: (errorData) => {
-  //         console.error(errorData);
-  //         this.loginError = errorData;
-  //       },
-  //       complete: () => {
-  //         console.info("Login completo");
-  //         this.router.navigateByUrl('/inicio');
-  //         this.loginForm.reset();
-  //       }
-  //     })
-  //   }
-  //   else {
-  //     this.loginForm.markAllAsTouched();
-  //     alert("Error al ingresar los datos.");
-  //   }
-  // }
-
 
 
 }
