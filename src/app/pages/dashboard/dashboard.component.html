@@ -1,3 +1,9 @@
 <p>dashboard works!</p>
 <p *ngIf="!usuarioLogueado">Usuario autenticado</p>
 <p *ngIf="usuarioLogueado">Usuario No Autenticado</p>
+
+
+<div *ngIf="usuarioLogueado">
+    <p>Nombre: {{userData?.nombre}}</p>
+    <p>Email: {{userData?.correo}}</p>
+</div>
