@@ -10,7 +10,7 @@ import { Usuario } from 'src/app/services/auth/usuario';
 export class DashboardComponent implements OnInit {
 
   usuarioLogueado: boolean = true;
-  userData?: Usuario;
+  data?: Usuario;
 
   constructor(
     private loginService: LoginService
@@ -22,9 +22,11 @@ export class DashboardComponent implements OnInit {
         this.usuarioLogueado = userLogin;
       })
     });
-    this.loginService.dataUsuarioLogueado.subscribe({
+    this.loginService.datosUsuario.subscribe({
       next: (userData => {
-        this.userData = this.userData;
+        this.data = userData;
+        console.log('Datos del usuario: ', userData);
+
       })
     });
   }
