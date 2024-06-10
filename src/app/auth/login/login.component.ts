@@ -50,5 +50,9 @@ export class LoginComponent implements OnInit {
 
   }
 
+  registrar() {
+
+  }
+
 
 }

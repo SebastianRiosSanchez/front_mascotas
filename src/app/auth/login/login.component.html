@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container d-flex flex-column align-items-center justify-content-center">
     <p class="text-danger">{{loginError}}</p>
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" class="w-100" style="max-width: 400px;">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
             <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1"
@@ -12,6 +12,10 @@
         </div>
         <div class="mb-3 form-check">
         </div>
-        <button type="submit" (click)="login()" class="btn btn-primary">Ingresar</button>
+        <div class="d-flex justify-content-between w-100 gap-2">
+            <button type="submit" (click)="login()" class="btn btn-primary flex-grow-1">Ingresar</button>
+            <button type="submit" (click)="registrar()" class="btn btn-primary flex-grow-1">Registrarse</button>
+        </div>
+
     </form>
 </div>
