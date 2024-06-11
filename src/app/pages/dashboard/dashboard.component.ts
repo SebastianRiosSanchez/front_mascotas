@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { Usuario } from 'src/app/services/auth/usuario';
 
@@ -7,7 +7,7 @@ import { Usuario } from 'src/app/services/auth/usuario';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   usuarioLogueado: boolean = true;
   data?: Usuario;
@@ -15,6 +15,10 @@ export class DashboardComponent implements OnInit {
   constructor(
     private loginService: LoginService
   ) { }
+  ngOnDestroy(): void {
+    this.loginService.dataUsuarioLogueado.unsubscribe();
+    this.loginService.usuarioLogueado.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.loginService.UsuarioLogueado.subscribe({
