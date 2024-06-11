@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private loginService: LoginService
   ) { }
+  
   ngOnDestroy(): void {
     this.loginService.dataUsuarioLogueado.unsubscribe();
     this.loginService.usuarioLogueado.unsubscribe();
